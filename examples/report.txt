@@ -1,0 +1,143 @@
+[05/01/2025 19:31:11] Job information:
+{
+  "CommandLine": [
+    "$(engine.path)\\\\revitcoreconsole.exe /i \"$(args[rvtFile].path)\" /al \"$(appbundles[DeleteWallsApp].path)\""
+  ],
+  "Settings": {
+    "dasOpenNetwork": {
+      "value": "true",
+      "isEnvironmentVariable": true
+    }
+  },
+  "Id": "aa698c9fb29b4edfb7b01979aeba1e95",
+  "ActivityId": "abi_daas_test.DeleteWallsActivity+test",
+  "EngineId": "Autodesk.Revit_2026!123",
+  "Apps": [
+    "abi_daas_test.DeleteWallsApp!4"
+  ],
+  "BoundArguments": {
+    "rvtFile": {
+      "localName": "$(rvtFile)",
+      "url": "urn:adsk.objects:os.object:abi_daas_test_bucket/DeleteWalls.rvt",
+      "headers": {
+        "Authorization": "Masked:g22FLPMsh2qZSitJiSZvNbI8kfA="
+      },
+      "verb": "get"
+    },
+    "runRequest": {
+      "localName": "run.json",
+      "url": "urn:adsk.objects:os.object:abi_daas_test_bucket/run.json",
+      "headers": {
+        "Authorization": "Masked:g22FLPMsh2qZSitJiSZvNbI8kfA="
+      },
+      "verb": "get"
+    },
+    "pythonLibs": {
+      "zip": true,
+      "localName": "pythonDependencies",
+      "url": "urn:adsk.objects:os.object:abi_daas_test_bucket/pythonDependencies.zip",
+      "headers": {
+        "Authorization": "Masked:g22FLPMsh2qZSitJiSZvNbI8kfA="
+      },
+      "verb": "get"
+    },
+    "result": {
+      "localName": "result.json",
+      "url": "urn:adsk.objects:os.object:abi_daas_test_bucket/result.json",
+      "headers": {
+        "Authorization": "Masked:g22FLPMsh2qZSitJiSZvNbI8kfA="
+      },
+      "verb": "put"
+    }
+  },
+  "Quotas": {
+    "limitProcessingTimeSec": 10800,
+    "limitTotalUncompressedAppsSizeInMB": 5000
+  }
+}
+[05/01/2025 19:31:12] Starting work item aa698c9fb29b4edfb7b01979aeba1e95
+[05/01/2025 19:31:12] Start download phase.
+[05/01/2025 19:31:12] Start downloading input: verb - 'Get', url - 'urn:adsk.objects:os.object:abi_daas_test_bucket/DeleteWalls.rvt'
+[05/01/2025 19:31:12] Start downloading input: verb - 'Get', url - 'urn:adsk.objects:os.object:abi_daas_test_bucket/run.json'
+[05/01/2025 19:31:12] Start downloading input: verb - 'Get', url - 'urn:adsk.objects:os.object:abi_daas_test_bucket/pythonDependencies.zip'
+[05/01/2025 19:31:12] End downloading file. Source=urn:adsk.objects:os.object:abi_daas_test_bucket/run.json,LocalFile=T:\Aces\Jobs\aa698c9fb29b4edfb7b01979aeba1e95\run.json,BytesDownloaded=18424,Duration=329ms
+[05/01/2025 19:31:13] End downloading file. Source=urn:adsk.objects:os.object:abi_daas_test_bucket/DeleteWalls.rvt,LocalFile=T:\Aces\Jobs\aa698c9fb29b4edfb7b01979aeba1e95\DeleteWalls.rvt,BytesDownloaded=54333440,Duration=1162ms
+[05/01/2025 19:31:13] End downloading file. Source=urn:adsk.objects:os.object:abi_daas_test_bucket/pythonDependencies.zip,LocalFile=T:\Aces\Jobs\aa698c9fb29b4edfb7b01979aeba1e95\zip_104.zip,BytesDownloaded=87892457,Duration=1335ms
+[05/01/2025 19:31:14] T:\Aces\Jobs\aa698c9fb29b4edfb7b01979aeba1e95\zip_104.zip has been unpacked to folder T:\Aces\Jobs\aa698c9fb29b4edfb7b01979aeba1e95\pythonDependencies.
+[05/01/2025 19:31:14] End download phase successfully.
+[05/01/2025 19:31:20] Start preparing script and command line parameters.
+[05/01/2025 19:31:20] Command line: [ /i "T:\Aces\Jobs\aa698c9fb29b4edfb7b01979aeba1e95\DeleteWalls.rvt" /al "T:\Aces\Applications\63f3575ea165207481e68a00fde7807e.abi_daas_test.DeleteWallsApp[4].package"]
+[05/01/2025 19:31:20] End preparing script and command line parameters.
+[05/01/2025 19:31:20] Start script phase.
+[05/01/2025 19:31:20] Start Revit Core Engine standard output dump.
+[05/01/2025 19:31:20] ====== Revit is running: revitcoreconsole ======
+[05/01/2025 19:31:20] Current Exe path: T:\Aces\AcesRoot\26.0\coreEngine\Exe\revitcoreconsole.dll
+[05/01/2025 19:31:20] Echoing command line args:
+[05/01/2025 19:31:20] 0:/i
+[05/01/2025 19:31:20] 1:T:\Aces\Jobs\aa698c9fb29b4edfb7b01979aeba1e95\DeleteWalls.rvt
+[05/01/2025 19:31:20] 2:/al
+[05/01/2025 19:31:20] 3:T:\Aces\Applications\63f3575ea165207481e68a00fde7807e.abi_daas_test.DeleteWallsApp[4].package
+[05/01/2025 19:31:20] 4:/isolate
+[05/01/2025 19:31:20] 5:HKEY_CURRENT_USER\SOFTWARE\AppDataLow\Software\Autodesk\CoreUser\WorkItem_aa698c9fb29b4edfb7b01979aeba1e95
+[05/01/2025 19:31:20] 6:T:\Aces\Jobs\aa698c9fb29b4edfb7b01979aeba1e95\userdata
+[05/01/2025 19:31:21] Selected Revit\RCE install Path: (from app.config)
+[05/01/2025 19:31:21] Resolving location of Revit/RevitCoreEngine installation...
+[05/01/2025 19:31:21] Loading RCE ....
+[05/01/2025 19:31:30] Running user application....
+[05/01/2025 19:31:30] Found an addIn for registration: DynamoRevit.addin
+[05/01/2025 19:31:30] Language not specified, using English-United States(ENU) as default.
+[05/01/2025 19:31:47] <<!>> Work folder is 'T:\Aces\Jobs\aa698c9fb29b4edfb7b01979aeba1e95'
+[05/01/2025 19:31:47] <<!>> Starting to load D4DA
+[05/01/2025 19:31:47] <<!>> D4DA Loaded
+[05/01/2025 19:31:48] Get RCE: (VersionBuild) 26.0.4.409 (VersionNumber) 2026 (SubVersionNumber) 2026.0
+[05/01/2025 19:32:19] <<!>> DA event raised.
+[05/01/2025 19:32:19] <<!>> Preparing Dynamo model. Vers 1
+[05/01/2025 19:32:19] using asm at location C:\Revit2026
+[05/01/2025 19:32:19] Is Loaded
+[05/01/2025 19:32:19] 2025-05-01 19:32:19Z : Python template set to default.
+[05/01/2025 19:32:21] 2025-05-01 19:32:21Z : Dynamo -- Build 3.5.0.8300
+[05/01/2025 19:32:21] 2025-05-01 19:32:21Z : System.InvalidOperationException:
+[05/01/2025 19:32:21] 2025-05-01 19:32:21Z : There already exists an AlsoKnownAs mapping for DSCoreNodesUI.Logic.If.
+[05/01/2025 19:32:21] 2025-05-01 19:32:21Z :
+[05/01/2025 19:32:21] 2025-05-01 19:32:21Z : System.InvalidOperationException:
+[05/01/2025 19:32:21] 2025-05-01 19:32:21Z : There already exists an AlsoKnownAs mapping for If.
+[05/01/2025 19:32:21] 2025-05-01 19:32:21Z :
+[05/01/2025 19:32:21] 2025-05-01 19:32:21Z : Duplicate migration type registered for SunPathDirection
+[05/01/2025 19:32:23] 2025-05-01 19:32:23Z : The folder 'T:\Aces\Applications\63f3575ea165207481e68a00fde7807e.abi_daas_test.DeleteWallsApp[4].package\DynamoRevitDA.bundle\Contents\Built-In Packages\Packages' does not exist
+[05/01/2025 19:32:23] 2025-05-01 19:32:23Z :
+[05/01/2025 19:32:23] Loading Dynamo extensions:
+[05/01/2025 19:32:23] 2025-05-01 19:32:23Z : Dynamo will use the package manager server at : https://www.dynamopackages.com
+[05/01/2025 19:32:23] Called LoadPythonEngine for assembly DSCPython, Version=3.5.0.8300, Culture=neutral, PublicKeyToken=null
+[05/01/2025 19:32:23] Before VerifyEngineReferences
+[05/01/2025 19:32:23] Could not find assembly 'Python.Included, Version=2.5.2.12086, Culture=neutral, PublicKeyToken=null'. Either explicitly load this assembly using a method such as LoadFromAssemblyPath() or use a MetadataAssemblyResolver that returns a valid assembly.   at System.Reflection.MetadataLoadContext.ResolveAssembly(RoAssemblyName refName)
+[05/01/2025 19:32:23] at System.Reflection.MetadataLoadContext.LoadFromAssemblyName(AssemblyName assemblyName)
+[05/01/2025 19:32:23] at Dynamo.PythonServices.PythonEngineManager.VerifyEngineReferences(Assembly assembly, IEnumerable`1 standardPaths)
+[05/01/2025 19:32:23] at Dynamo.PythonServices.PythonEngineManager.LoadPythonEngine(Assembly assembly)
+[05/01/2025 19:32:23] 2025-05-01 19:32:23Z : The folder 'T:\Aces\Applications\63f3575ea165207481e68a00fde7807e.abi_daas_test.DeleteWallsApp[4].package\DynamoRevitDA.bundle\Contents\Built-In Packages\Packages' does not exist
+[05/01/2025 19:32:23] 2025-05-01 19:32:23Z : DynamoPackageManager (id: FCABC211-D56B-4109-AF18-F434DFE48139) extension is added
+[05/01/2025 19:32:48] Could not write attribute Authenticator to module Autodesk.CoordinationModelDB cache
+[05/01/2025 19:32:49] "{\"info\":{\"issues\":[],\"status\":\"OK\",\"outputs\":[{\"id\":\"55ea12bd-3957-4547-89f9-54c6a080c707\",\"name\":\"Watch 3D\",\"valueSchema\":{\"typeId\":\"String\",\"format\":\"GLTF_MODEL\"},\"value\":\"Z2xURgIAAAD8BQAAWAMAAEpTT057ImFzc2V0Ijp7ImNvcHlyaWdodCI6IiIsImdlbmVyYXRvciI6IlNoYXJwR0xURiAxLjAuMC1hbHBoYTAwMzAiLCJ2ZXJzaW9uIjoiMi4wIn0sImFjY2Vzc29ycyI6W3sibmFtZSI6IlBPU0lUSU9OIiwiYnVmZmVyVmlldyI6MCwiY29tcG9uZW50VHlwZSI6NTEyNiwiY291bnQiOjI0LCJtYXgiOlsxMCwwLDEwXSwibWluIjpbLTEwLC0wLjUsLTEwXSwidHlwZSI6IlZFQzMifSx7Im5hbWUiOiJOT1JNQUwiLCJidWZmZXJWaWV3IjowLCJieXRlT2Zmc2V0IjoxMiwiY29tcG9uZW50VHlwZSI6NTEyNiwiY291bnQiOjI0LCJtYXgiOlsxLDEsMV0sIm1pbiI6Wy0xLC0xLC0xXSwidHlwZSI6IlZFQzMifSx7ImJ1ZmZlclZpZXciOjEsImNvbXBvbmVudFR5cGUiOjUxMjMsImNvdW50IjozNiwidHlwZSI6IlNDQUxBUiJ9XSwiYnVmZmVyVmlld3MiOlt7ImJ1ZmZlciI6MCwiYnl0ZUxlbmd0aCI6NTc2LCJieXRlU3RyaWRlIjoyNCwidGFyZ2V0IjozNDk2Mn0seyJidWZmZXIiOjAsImJ5dGVMZW5ndGgiOjcyLCJieXRlT2Zmc2V0Ijo1NzYsInRhcmdldCI6MzQ5NjN9XSwiYnVmZmVycyI6W3siYnl0ZUxlbmd0aCI6NjQ4fV0sIm1hdGVyaWFscyI6W3siZG91YmxlU2lkZWQiOnRydWUsInBick1ldGFsbGljUm91Z2huZXNzIjp7Im1ldGFsbGljRmFjdG9yIjowLCJyb3VnaG5lc3NGYWN0b3IiOjAuNDAwMDAwMDA1OTYwNDY0NX19XSwibWVzaGVzIjpbeyJuYW1lIjoibWVzaCIsInByaW1pdGl2ZXMiOlt7ImF0dHJpYnV0ZXMiOnsiUE9TSVRJT04iOjAsIk5PUk1BTCI6MX0sImluZGljZXMiOjIsIm1hdGVyaWFsIjowfV19XSwibm9kZXMiOlt7Im1lc2giOjB9XSwic2NlbmUiOjAsInNjZW5lcyI6W3sibm9kZXMiOlswXX1dfSAgiAIAAEJJTgAAACBBAAAAvwAAIEEAAACAAAAAgAAAgD8AACBBAAAAAAAAIEEAAACAAAAAgAAAgD8AACDBAAAAvwAAIEEAAACAAAAAgAAAgD8AACDBAAAAAAAAIEEAAACAAAAAgAAAgD8AACBBAAAAAAAAIMEAAAAAAACAPwAAAIAAACDBAAAAAAAAIMEAAAAAAACAPwAAAIAAACBBAAAAAAAAIEEAAAAAAACAPwAAAIAAACDBAAAAAAAAIEEAAAAAAACAPwAAAIAAACDBAAAAvwAAIEEAAIC/AAAAgAAAAAAAACDBAAAAAAAAIEEAAIC/AAAAgAAAAAAAACDBAAAAvwAAIMEAAIC/AAAAgAAAAAAAACDBAAAAAAAAIMEAAIC/AAAAgAAAAAAAACBBAAAAvwAAIMEAAIA/AAAAAAAAAIAAACBBAAAAAAAAIMEAAIA/AAAAAAAAAIAAACBBAAAAvwAAIEEAAIA/AAAAAAAAAIAAACBBAAAAAAAAIEEAAIA/AAAAAAAAAIAAACBBAAAAvwAAIEEAAACAAACAvwAAAAAAACDBAAAAvwAAIEEAAACAAACAvwAAAAAAACBBAAAAvwAAIMEAAACAAACAvwAAAAAAACDBAAAAvwAAIMEAAACAAACAvwAAAAAAACDBAAAAvwAAIMEAAAAAAAAAAAAAgL8AACDBAAAAAAAAIMEAAAAAAAAAAAAAgL8AACBBAAAAvwAAIMEAAAAAAAAAAAAAgL8AACBBAAAAAAAAIMEAAAAAAAAAAAAAgL8AAAEAAgACAAEAAwAEAAUABgAGAAUABwAIAAkACgAKAAkACwAMAA0ADgAOAA0ADwAQABEAEgASABEAEwAUABUAFgAWABUAFwA=\",\"valueString\":{\"count\":1,\"value\":\"glTF 3D model\"},\"type\":\"Watch3D\",\"nodeTypeProperties\":{\"type\":\"Watch3dProperties\",\"camera\":{\"position\":{\"x\":-17.0,\"y\":24.0,\"z\":50.0},\"look\":{\"x\":12.0,\"y\":-13.0,\"z\":-58.0}}}}],\"id\":\"\",\"name\":\"\"}}"
+[05/01/2025 19:32:53] Finished running.  Process will return: Success
+[05/01/2025 19:32:53] ====== Revit finished running: revitcoreconsole ======
+[05/01/2025 19:32:55] End Revit Core Engine standard output dump.
+[05/01/2025 19:32:55] End script phase.
+[05/01/2025 19:32:55] Start upload phase.
+[05/01/2025 19:32:55] Uploading 'T:\Aces\Jobs\aa698c9fb29b4edfb7b01979aeba1e95\result.json': verb - 'Put', url - 'urn:adsk.objects:os.object:abi_daas_test_bucket/result.json'
+[05/01/2025 19:32:55] End upload phase successfully.
+[05/01/2025 19:32:56] Job finished with result Succeeded
+[05/01/2025 19:32:56] Job Status:
+{
+  "status": "success",
+  "reportUrl": "https://dasprod-store.s3.amazonaws.com/workItem/abi_daas_test/aa698c9fb29b4edfb7b01979aeba1e95/report?X-Amz-Expires=48600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECwaCXVzLWVhc3QtMSJIMEYCIQDaA6%2FJiYPYg4ZiAIqt1iKKpLUAwEyX479Q%2BRRWB3Rv6wIhAO1FptWUq1EVzKWnrSKTKzRAugj9YbNzHSTSN9xalO49KokDCMX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQBBoMMjIwNDczMTUyMzEwIgxBYRKXW016FKuBJkEq3QI2gq0NkLohmlrsVYdAt%2F313Hbcm0iuWBZ1eF%2F82sIPELWZacwboqyFQ%2FUU5QXe2Lig2%2BjH5gjx9vw9lMkP9Zg6wDcnSzn05eJEOl7Mj10HABCAkVKwDKtp%2FQbz0zIkP%2FdPCTx0da%2FXJxnVWKJFIpLccbnDpjECZwP6aTwDXkSsRvMT3mzK48NVsu1NvIQ%2Bii2Z3m2G4vGV2MqVLUvvvsMkwvNECmyw2O0VnQo%2FriCVA5tiobVk36I4H3gMqw0yjuKAvkp92JlZY%2FXtnjVE158yA0eE0AwxxxzQcjnbRk57gMsNKXb9yfImkKOxi2VHIP6Xph9ghjbie8LtJWtPH7JQxSTiBi0mI2ABIPqU9mY0qztRW3AuvErIK%2BEUOOvg509MX1a18YvIaIXxZwOrO0KiWUnkeI4%2B%2BlUqxKdDgfxwrxRd4vEy6Vv7w40oxb0LOn4r%2F6dj18eFl%2FW2VB9lMLSUz8AGOp0BB8%2FV3Hn9p5IVaQI4xQiSa1xN61eDS14G1aX%2BBlER43TqdYpUtK335LElzi%2F6PIRP3aXPw%2BE8WlM4%2BouQCDFbyXlS0X3%2BPliZuJtxKbYN%2Bn2ZzsbG%2FG5SlBKNp1S4mwIdwU31GZyB0j30PIKouOESjevybaPNHcUZ4Z1als0nuMR5WI7wUH2rIroVkhX%2FIAaxtJA%2BIFS7Zga0GonAgw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIATGVJZKM3BDIOUHTU%2F20250501%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250501T193111Z&X-Amz-SignedHeaders=host&X-Amz-Signature=32312834f0f977a34660f09c2c775428ab0f3bd729616cff65643ce0346553d0",
+  "activityId": "abi_daas_test.DeleteWallsActivity+test",
+  "stats": {
+    "timeQueued": "2025-05-01T19:31:11.7737393Z",
+    "timeDownloadStarted": "2025-05-01T19:31:11.9110925Z",
+    "timeInstructionsStarted": "2025-05-01T19:31:20.1702539Z",
+    "timeInstructionsEnded": "2025-05-01T19:32:55.3056724Z",
+    "timeUploadEnded": "2025-05-01T19:32:55.6952466Z",
+    "bytesDownloaded": 142244321,
+    "bytesUploaded": 2526
+  },
+  "id": "aa698c9fb29b4edfb7b01979aeba1e95"
+}

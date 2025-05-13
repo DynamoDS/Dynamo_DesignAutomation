@@ -1,0 +1,269 @@
+{
+  "Uuid": "c2a2827a-cb58-480f-a1e4-b33c2674f04b",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "run",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "7c571762dc9644a180bd4a0868e77f07",
+      "Name": "Number",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "1139274",
+      "NumberType": "Double",
+      "Description": "Creates a number"
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "3124f445ed9f4287b8c97cf807ceac11",
+      "Name": "Watch",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "7c571762dc9644a180bd4a0868e77f07",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "49558989e6f64193a3adf45281a1b927",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 1139274.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d1c67fdd27b246b094f33bde529e403b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "04bef7408b084f0eb9785b8e49f4ec83",
+          "Name": "id",
+          "Description": "ElementId, String, Guid or Integer id of the element.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7716de28db3f426ea1b7d3e61b9e69b9",
+          "Name": "Element",
+          "Description": "Found element or null.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "archilab.Revit.Selection.Select.ByElementId@var",
+      "Replication": "Auto",
+      "Description": "Select Element by Id\n\nSelect.ByElementId (id: var): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "c874588eaf054321b98eae675647eb34",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3648fd2746904540aefd189f40c0a807",
+          "Name": "element",
+          "Description": "Element to delete.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "64f302d326fa4b6f97b2de38a2ff64d0",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "archilab.Revit.Elements.Elements.Delete@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Delete element from Revit DB.\n\nElements.Delete (element: Element): bool"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "Id": "3124f445ed9f4287b8c97cf807ceac11",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "1f1ef9359aaf4b9682dbaf54e3c01f0e",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2cf39a71ade24daa84f7345663a692e6",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "49558989e6f64193a3adf45281a1b927",
+      "End": "04bef7408b084f0eb9785b8e49f4ec83",
+      "Id": "fa5b606e67b145ee83269192937520ac",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7716de28db3f426ea1b7d3e61b9e69b9",
+      "End": "3648fd2746904540aefd189f40c0a807",
+      "Id": "9546ac06eee3469fa042a4ae9e26d54e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "64f302d326fa4b6f97b2de38a2ff64d0",
+      "End": "1f1ef9359aaf4b9682dbaf54e3c01f0e",
+      "Id": "20d17f97d6ce4b5a91e976412d1bd5dc",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "archi-lab.net",
+      "Version": "2025.300.1225",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "d1c67fdd27b246b094f33bde529e403b",
+        "c874588eaf054321b98eae675647eb34"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -138.79751586914062,
+      "EyeY": 30.875171661376953,
+      "EyeZ": 76.390625,
+      "LookX": 16.455244064331055,
+      "LookY": -17.826515197753906,
+      "LookZ": -79.53368377685547,
+      "UpX": 0.04242589697241783,
+      "UpY": 0.9540387392044067,
+      "UpZ": -0.2050585001707077
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "7c571762dc9644a180bd4a0868e77f07",
+        "Name": "Number",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 96.80000000000007,
+        "Y": 248.39999999999998
+      },
+      {
+        "Id": "d1c67fdd27b246b094f33bde529e403b",
+        "Name": "Select.ByElementId",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 285.6,
+        "Y": 218.00000000000006
+      },
+      {
+        "Id": "c874588eaf054321b98eae675647eb34",
+        "Name": "Elements.Delete",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 514.4000000000002,
+        "Y": 426.4
+      },
+      {
+        "Id": "3124f445ed9f4287b8c97cf807ceac11",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 854.0000000000001,
+        "Y": 610.8000000000001
+      }
+    ],
+    "Annotations": [],
+    "X": -83.20000000000005,
+    "Y": -146.8,
+    "Zoom": 1.0
+  }
+}
