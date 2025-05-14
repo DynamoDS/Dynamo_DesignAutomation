@@ -1,0 +1,24 @@
+{
+  "name": "dynamo_designautomation",
+  "version": "1.0.0",
+  "description": "This repo contains supporting files, scripts and documentation that can help streamline onboarding and running Dynamo graphs in Design automation for Revit.",
+  "main": "design_automation.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "dotenv": "^16.4.5",
+    "formdata-node": "^6.0.3",
+    "fs": "^0.0.1-security",
+    "js-base64": "^3.7.7",
+    "node-fetch-cjs": "^3.3.2",
+    "url": "^0.11.3",
+    "uuid": "^10.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

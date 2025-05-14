@@ -1,4 +1,5 @@
 # DynamoRevit for Design Automation
+
 This repo contains supporting files, scripts and documentation that can help streamline onboarding and running Dynamo graphs in Design automation for Revit.
 
 ## Overview of the standard design automation process
@@ -9,38 +10,13 @@ This repo contains supporting files, scripts and documentation that can help str
 - Submit a `WorkItem`, a job.
 - Download the `Results`.
 
-https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/
+[Revit add-in on Design Automation Walkthrough](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/)
 
 ## Prerequisites
 
 - Go to [APS Developer portal](https://aps.autodesk.com/).
 - Create an app.
-- Grab the Client ID anc Client Secret, export `CLIENT_ID` and `CLIENT_SECRET` as environment variables and/or save it in `.env` file. (Copy `.env.example` and save it as `.env`)
-
-> [!TIP]
->
-> - [dotenv](https://www.npmjs.com/package/dotenv) can be used to load .env in .js files
-> - [direnv](https://direnv.net/) can be used to load .env as environment variables.
-
-## Scripts
-
-- You use these [bash scripts](/scripts/) to perform all of the tasks listed above. e.g. `./scripts/get_appbundles.sh`. Requires [jq](https://jqlang.org/).
-- You can also use this [js script](./design_automation.js) for all the update tasks once the resources are created. e.g `node design_automation.js all`.
-- You can also use postman collection from [here](https://github.com/autodesk-platform-services/aps-tutorial-postman/tree/master/DA4Revit/collections).
-
-### How to run design_automation.js
-- Install [nodejs](https://nodejs.org/en/download) and run `npm install`
-- Populate/customize the .env.example file with your APS data.
-- Run `node design_automation.js all` to set up all tasks (from 2 to 8)
-- You can also run individual tasks, by specifying one or more of the following arguments: 
-  - `nick`- Creates a nickname
-  - `bundle`- Creates an app bundle 
-  - `activity` - Creates an activity
-  - `rvt` - Uploads the revit file
-  - `python` - Uploads the pythonDependencies.zip
-  - `run` - Uploads the run.json request
-  - `work` - Creates and submits a WorkItem request
-  - `result` - Polls for results (ands saves the results locally log.txt, result.json and result.rvt)
+- Grab the Client ID and Client Secret.
 
 ## Tasks
 
@@ -48,9 +24,7 @@ For general instructions see the [Walkthrough](https://aps.autodesk.com/en/docs/
 
 - Task 1 - [Convert Revit Add-in](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step1-convert-addin/)
   - The adding is already created and you can download it from [DynamoRevitDA.zip](./da_files/DynamoRevitDA.zip)
-
   - If you need to use python nodes please also download [pythonDependencies.zip](./da_files/pythonDependencies.zip)
-
   `download_artifacts.sh`
 - Task 2 – [Obtain an Access Token](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step2-create-forge-app/) `get_access_token.sh`
 - Task 3 – [Create a Nickname](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step3-create-nickname/) `create_nickname.sh`
@@ -69,6 +43,7 @@ For general instructions see the [Walkthrough](https://aps.autodesk.com/en/docs/
     - A `result.rvt` (put parameter) can be included in order to download it. This file will contain the provided revit model after the dynamo run.
 
     Here is an example of an activity:
+
     ```shell
     curl -X POST  'https://developer.api.autodesk.com/da/us-east/v3/activities'  -H 'Content-Type: application/json'  -H 'Authorization: Bearer dummy_token'  -d '{
             "id": "DeleteWallsActivity13",
@@ -184,6 +159,48 @@ For general instructions see the [Walkthrough](https://aps.autodesk.com/en/docs/
 
 - Task 8 - [Download the Results](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step8-download-results/) `create_signed_download_url.sh` `download_result.sh`
   Result will look like [this](./examples/result.json)
+
+## Scripts
+
+You can perform above tasks using the scripts in this repository.
+
+> [!IMPORTANT]
+>
+> - Copy [`.env.example`](.env.example) and save it as `.env` and fill in the `CLIENT_ID` and `CLIENT_SECRET` and update other fields as needed.
+
+## How to run bash scripts
+
+> [!IMPORTANT]
+>
+> - Install [jq](https://jqlang.org/).
+> - Prepare environment variables.
+> - You can use [direnv](https://direnv.net/) to load values from `.env` as environment variables.
+> - Alternatively, you can copy use  an `.envrc` file. [`.envrc.example`](.envrc.example) and save it as `.envrc` and source it `source .envrc` to load the environment variables. 
+
+You use these [bash scripts](/scripts/) to perform all of the tasks listed above. e.g `./scripts/get_appbundles.sh`.
+
+### How to run design_automation.js
+
+> [!IMPORTANT]
+> Install [nodejs](https://nodejs.org/en/download).
+> Run `npm install`
+
+You can also use this [js script](./design_automation.js) for all the update tasks once the resources are created. e.g `node design_automation.js all`.
+
+- Run `node design_automation.js all` to set up all tasks (from 2 to 8)
+- You can also run individual tasks, by specifying one or more of the following arguments:
+  - `nick`- Creates a nickname
+  - `bundle`- Creates an app bundle
+  - `activity` - Creates an activity
+  - `rvt` - Uploads the revit file
+  - `python` - Uploads the pythonDependencies.zip
+  - `run` - Uploads the run.json request
+  - `work` - Creates and submits a WorkItem request
+  - `result` - Polls for results (ands saves the results locally log.txt, result.json and result.rvt)
+
+### Postman collection
+
+You can also use postman collection from [here](https://github.com/autodesk-platform-services/aps-tutorial-postman/tree/master/DA4Revit/collections).
 
 > [!TIP]
 > You can also see your AppBundles, Activities and WorkItems in [Design Automation Tools](https://da-manager.autodesk.io/) portal.
