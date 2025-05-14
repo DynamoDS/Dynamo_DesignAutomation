@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ -z "$1" ]; then
-  echo "Usage: $0 <app_id> e.g. appbundle.json"
+  echo "Usage: $0 <appbundle_json> e.g. appbundle.json"
   exit 1
 fi
 appbundle_json="$1"

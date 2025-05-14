@@ -13,7 +13,7 @@ fi
 activity_version="$2"
 
 if [ -z "$3" ]; then
-  echo "Usage: $0 <activity_id> <activity_alias> e.g. DeleteWallsAppActivity 1 test"
+  echo "Usage: $0 <activity_id> <activity_version> <activity_alias> e.g. DeleteWallsAppActivity 1 test"
   exit 1
 fi
 activity_alias="$3"
