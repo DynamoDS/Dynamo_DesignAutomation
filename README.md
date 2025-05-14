@@ -29,18 +29,18 @@ https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/
 - You can also use postman collection from [here](https://github.com/autodesk-platform-services/aps-tutorial-postman/tree/master/DA4Revit/collections).
 
 ### How to run design_automation.js
-Install [nodejs](https://nodejs.org/en/download) and run `npm install`
-Populate/customize the .env.example file with your APS data.
-Run `node design_automation.js all` to set up all tasks (from 2 to 8)
-You can also run individual tasks, by specifying one or more of the following arguments: 
-`nick`- Creates a nickname
-`bundle`- Creates an app bundle 
-`activity` - Creates an activity
-`rvt` - Uploads the revit file
-`python` - Uploads the pythonDependencies.zip
-`run` - Uploads the run.json request
-`work` - Creates and submits a WorkItem request
-`result` - Polls for results (ands saves the results locally log.txt, result.json and result.rvt)
+- Install [nodejs](https://nodejs.org/en/download) and run `npm install`
+- Populate/customize the .env.example file with your APS data.
+- Run `node design_automation.js all` to set up all tasks (from 2 to 8)
+- You can also run individual tasks, by specifying one or more of the following arguments: 
+  - `nick`- Creates a nickname
+  - `bundle`- Creates an app bundle 
+  - `activity` - Creates an activity
+  - `rvt` - Uploads the revit file
+  - `python` - Uploads the pythonDependencies.zip
+  - `run` - Uploads the run.json request
+  - `work` - Creates and submits a WorkItem request
+  - `result` - Polls for results (ands saves the results locally log.txt, result.json and result.rvt)
 
 ## Tasks
 
