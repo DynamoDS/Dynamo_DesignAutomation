@@ -10,11 +10,11 @@ const sleep = (ms) => {
     });
 }
 
-let uploadBundle, uploadRvt, uploadPython, uploadPackages, uploadRunReq, uploadDyn, uploadSetup, generateToken, work, submitActivity, pollResult;
-
+let uploadBundle, generateNickName, uploadRvt, uploadPython, uploadPackages, uploadRunReq, uploadDyn, uploadSetup, work, submitActivity, pollResult;
+let generateToken = true;
 for (let ii = 0; ii < process.argv.length; ii++) {
     if (process.argv[ii].includes("all")) {
-        uploadBundle = uploadRvt = uploadPython = uploadRunReq = generateToken = work = submitActivity = pollResult = uploadSetup = true;
+        generateNickName = uploadBundle = uploadRvt = uploadPython = uploadRunReq = generateToken = work = submitActivity = pollResult  = true;
         break;
     }
     if (process.argv[ii].includes("bundle")) {
@@ -25,8 +25,6 @@ for (let ii = 0; ii < process.argv.length; ii++) {
         uploadPython = true;
     } else if (process.argv[ii].includes("run")) {
         uploadRunReq = true;
-    } else if (process.argv[ii].includes("token")) {
-        generateToken = true;
     } else if (process.argv[ii].includes("activity")) {
         submitActivity = true;
     } else if (process.argv[ii].includes("result")) {
@@ -39,6 +37,8 @@ for (let ii = 0; ii < process.argv.length; ii++) {
         uploadPackages = true;
     } else if (process.argv[ii].includes("work")) {
         work = true;
+    } else if (process.argv[ii].includes("nick")) {
+        generateNickName = true;
     }
 }
 
@@ -47,13 +47,13 @@ if (fs.existsSync('.env.example')) {
     require('dotenv').config({ path: ['.env.example', '.env'] });
 }
 
-const bundlePath = path.join(process.env.DA_FOLDER, process.env.BUNDLE_FILE);
-const pythonPath = path.join(process.env.DA_FOLDER, process.env.PYTHON_FILE);
-const runReqPath = path.join(process.env.DA_FOLDER, process.env.RUN_REQ_FILE);
-const dynPath = path.join(process.env.DA_FOLDER, process.env.DYN_FILE);
-const setupPath = path.join(process.env.DA_FOLDER, process.env.SETUP_FILE);
-const rvtPath = path.join(process.env.DA_FOLDER, process.env.RVT_FILE);
-const packagesPath = path.join(process.env.DA_FOLDER, process.env.PACKAGES_FILE);
+const bundlePath = path.join(__dirname, process.env.DA_FOLDER, process.env.BUNDLE_FILE);
+const pythonPath = path.join(__dirname, process.env.DA_FOLDER, process.env.PYTHON_FILE);
+const runReqPath = path.join(__dirname, process.env.DA_FOLDER, process.env.RUN_REQ_FILE);
+const dynPath = path.join(__dirname, process.env.DA_FOLDER, process.env.DYN_FILE);
+const setupPath = path.join(__dirname, process.env.DA_FOLDER, process.env.SETUP_FILE);
+const rvtPath = path.join(__dirname, process.env.DA_FOLDER, process.env.RVT_FILE);
+const packagesPath = path.join(__dirname, process.env.DA_FOLDER, process.env.PACKAGES_FILE);
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 
@@ -103,11 +103,9 @@ async function getAccessToken() {
 (async () => {
 
     if (generateToken) {
-        var token = await getAccessToken();
-        fs.writeFileSync('token.json', token);
+        access_token = await getAccessToken();
     }
 
-    var access_token = fs.readFileSync(path.join(__dirname, 'token.json'), 'utf8');
     console.log("using token " + access_token);
 
     /*
@@ -124,19 +122,52 @@ async function getAccessToken() {
         let body = await response.json();
     */
 
-    const buundleApp = "DynamoDATest";
+    if (generateNickName) {
+
+        try {
+            let resp = await axios.patch("https://developer.api.autodesk.com/da/us-east/v3/forgeapps/me", {
+                "nickname": process.env.NICKNAME
+            },
+            {
+                headers: {
+                    'Authorization': `Bearer ${access_token}`,
+                    'Content-Type': 'application/json',
+                }
+            });
+            console.log(resp)
+        } catch(err){
+            console.log(err);
+        }
+    }
+
+    const buundleApp = process.env.BUNDLE_APP_NAME;
     if (uploadBundle) {
-        // Create new version of the bundle and write metadata to bundle.json
-        let response = await fetch(`https://developer.api.autodesk.com/da/us-east/v3/appbundles/${buundleApp}/versions`,
+
+        try {
+            const response = await axios.delete(`https://developer.api.autodesk.com/da/us-east/v3/appbundles/${buundleApp}`, {
+                headers: {
+                    'Authorization': `Bearer ${access_token}`
+                }
+            });
+
+            console.log(response);
+        } catch (ex) {
+            console.log(ex);
+        }
+
+        // Register a new app bundle
+        let response = await fetch(`https://developer.api.autodesk.com/da/us-east/v3/appbundles`,
             {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${access_token}`,
                     'Content-Type': 'application/json',
                 },
-                body: "{\r\n                \"id\": null,\r\n                \"engine\": \"Autodesk.Revit+2026\",\r\n                \"description\": \"Dynamo DA\"\r\n            }"
+                body: `{\r\n                \"id\": \"${buundleApp}\",\r\n                \"engine\": \"Autodesk.Revit+2026\",\r\n                \"description\": \"Dynamo DA\"\r\n            }`
             }
         );
+        console.log(response);
+
         let bundle = await response.json();
         console.log(JSON.stringify(bundle));
         fs.writeFileSync('bundle.json', JSON.stringify(bundle));
@@ -163,8 +194,10 @@ async function getAccessToken() {
         }
 
         try {
-            var res = await axios.patch(`https://developer.api.autodesk.com/da/us-east/v3/appbundles/${buundleApp}/aliases/test`,
-                { "version": bundle.version },
+            var res = await axios.post(`https://developer.api.autodesk.com/da/us-east/v3/appbundles/${buundleApp}/aliases`,
+                { "version": bundle.version,
+                    "id": "test"
+                },
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -174,6 +207,26 @@ async function getAccessToken() {
             console.log(res.data);
         } catch (ex) {
             console.log(ex);
+        }
+    }
+
+    try {
+        // Try to create the bucket, fail silently if it already exists
+        var bucketResp = await axios.post('https://developer.api.autodesk.com/oss/v2/buckets',{
+            "bucketKey": process.env.OSS_BUCKET_NAME,
+            "access": "full",
+            "policyKey": "transient"
+        },
+        {
+            headers: {
+                'x-ads-region': process.env.OSS_BUCKET_REGION,
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${access_token}`
+            }
+        });
+    } catch(err) {
+        if (err.response.status != 409){
+            console.log(err);
         }
     }
 
@@ -395,7 +448,7 @@ async function getAccessToken() {
         }
     }
 
-    const activityId = "DeleteWallsActivity20";
+    const activityId = process.env.ACTIVITY_NAME;
     const activityAlias = "test";
     if (submitActivity) {
 
@@ -412,7 +465,7 @@ async function getAccessToken() {
 
         const data = {
             "id": activityId,
-            "commandLine": [ "$(engine.path)\\\\revitcoreconsole.exe /i \"$(args[rvtFile].path)\" /al \"$(appbundles[DynamoDATest].path)\"" ],
+            "commandLine": [ `$(engine.path)\\\\revitcoreconsole.exe /i \"$(args[rvtFile].path)\" /al \"$(appbundles[${buundleApp}].path)\"` ],
             "parameters": {
              "rvtFile": {
                 "zip": false,
@@ -456,7 +509,7 @@ async function getAccessToken() {
               }
             },
             "engine": "Autodesk.Revit+2026",
-            "appbundles": [ "DynamoDATest.DynamoDATest+test" ],
+            "appbundles": [ `${process.env.NICKNAME}.${buundleApp}+test` ],
             "description": "Deletes walls from Revit file."
           };
         try {
@@ -489,10 +542,10 @@ async function getAccessToken() {
          }
     }
 
-    let workResp = "";
+    let workResp = null;
     if (work) {
         const data = {
-            "activityId": `DynamoDATest.${activityId}+${activityAlias}`,
+            "activityId": `${process.env.NICKNAME}.${activityId}+${activityAlias}`,
             "arguments": {
                 "rvtFile": {
                     "url": `urn:adsk.objects:os.object:${process.env.OSS_BUCKET_NAME}/${process.env.RVT_FILE}`,
@@ -549,32 +602,35 @@ async function getAccessToken() {
     }
 
     if (pollResult) {
-        try {
-            const inProgress = "inprogress";
-            var data = { 'status': inProgress };
-            while (true) {
-                var xx = await axios.get(`https://developer.api.autodesk.com/da/us-east/v3/workitems/${workResp.id}`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
+
+        if (workResp) 
+        {
+            try {
+                const inProgress = "inprogress";
+                var data = { 'status': inProgress };
+                while (true) {
+                    var xx = await axios.get(`https://developer.api.autodesk.com/da/us-east/v3/workitems/${workResp.id}`, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${access_token}`
+                        }
+                    });
+                    data = xx.data;
+                    if (data.status !== inProgress && data.status !== "pending") {
+                        break;
                     }
-                });
-                data = xx.data;
-                if (data.status !== inProgress && data.status !== "pending") {
-                    break;
+                    console.log(data);
+                    await sleep(5000);
                 }
-                console.log(data);
-                await sleep(5000);
+
+                console.log(data.reportUrl)
+                var data = await fetch(data.reportUrl);
+                var result = await data.text();
+                fs.writeFileSync('log.txt', result);
+            } catch (ex) {
+                console.log(ex);
             }
-
-            console.log(data.reportUrl)
-            var data = await fetch(data.reportUrl);
-            var result = await data.text();
-            fs.writeFileSync('log.txt', result);
-        } catch (ex) {
-            console.log(ex);
         }
-
         try {
             var rsp = await axios.get(`https://developer.api.autodesk.com/oss/v2/buckets/${process.env.OSS_BUCKET_NAME}/objects/${process.env.RESULT_FILE}/signeds3download`, {
                 headers: {
@@ -584,7 +640,21 @@ async function getAccessToken() {
             });
 
             const response = await axios.get(rsp.data.url);
-            fs.writeFileSync('result.json', JSON.stringify(response.data));
+            fs.writeFileSync(process.env.RESULT_FILE, JSON.stringify(response.data));
+        } catch (ex) {
+            console.log(ex);
+        }
+
+        try {
+            var rsp = await axios.get(`https://developer.api.autodesk.com/oss/v2/buckets/${process.env.OSS_BUCKET_NAME}/objects/${process.env.RVT_RESULT_FILE}/signeds3download`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${access_token}`
+                }
+            });
+
+            const response = await fetch(rsp.data.url, { method: 'GET' });
+            fs.writeFileSync(process.env.RVT_RESULT_FILE, Buffer.from(await response.arrayBuffer()));
         } catch (ex) {
             console.log(ex);
         }

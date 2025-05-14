@@ -25,8 +25,22 @@ https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/
 ## Scripts
 
 - You use these [bash scripts](/scripts/) to perform all of the tasks listed above. e.g. `./scripts/get_appbundles.sh`. Requires [jq](https://jqlang.org/).
-- You can also use this [js script](./design_automation.js) for all the update tasks once the resources are created. e.g `node design_automation.js token`. To use this script you will need to first install [nodejs](https://nodejs.org/en/download).
+- You can also use this [js script](./design_automation.js) for all the update tasks once the resources are created. e.g `node design_automation.js all`.
 - You can also use postman collection from [here](https://github.com/autodesk-platform-services/aps-tutorial-postman/tree/master/DA4Revit/collections).
+
+### How to run design_automation.js
+Install [nodejs](https://nodejs.org/en/download) and run `npm install`
+Populate/customize the .env.example file with your APS data.
+Run `node design_automation.js all` to set up all tasks (from 2 to 8)
+You can also run individual tasks, by specifying one or more of the following arguments: 
+`nick`- Creates a nickname
+`bundle`- Creates an app bundle 
+`activity` - Creates an activity
+`rvt` - Uploads the revit file
+`python` - Uploads the pythonDependencies.zip
+`run` - Uploads the run.json request
+`work` - Creates and submits a WorkItem request
+`result` - Polls for results (ands saves the results locally log.txt, result.json and result.rvt)
 
 ## Tasks
 

@@ -3,3 +3,5 @@ node_modules
 *.zip
 *.json
 !run.json
+log.txt
+result.rvt
