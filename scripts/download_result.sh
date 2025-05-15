@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ -z "$1" ]; then
-  echo "Usage: $0 <download_json> <file> e.g. result.json_download.json"
+  echo "Usage: $0 <download_json> e.g. result.json_download.json"
   exit 1
 fi
 download_json="$1"
