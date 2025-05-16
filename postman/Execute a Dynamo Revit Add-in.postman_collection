@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "0dc149f0-295d-4a3b-86fb-048503b6d615",
 		"name": "Execute a Revit Add-in",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "2815585"
 	},
 	"item": [
@@ -74,7 +74,21 @@
 								}
 							]
 						},
-						"url": "https://developer.api.autodesk.com/authentication/v2/token"
+						"url": {
+							"raw": "https://developer.api.autodesk.com/authentication/v2/token",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"authentication",
+								"v2",
+								"token"
+							]
+						}
 					},
 					"response": []
 				}
@@ -113,7 +127,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -134,7 +149,16 @@
 							"mode": "raw",
 							"raw": "{\r\n\t\"nickname\": \"{{dasNickName}}\"\r\n}"
 						},
-						"url": "{{dasApiRoot}}/forgeapps/me",
+						"url": {
+							"raw": "{{dasApiRoot}}/forgeapps/me",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"forgeapps",
+								"me"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/forgeapps-id-PATCH/)"
 					},
 					"response": []
@@ -173,7 +197,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -182,7 +207,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -245,16 +271,22 @@
 								{
 									"key": "success_action_redirect",
 									"value": "{{deleteWallsAppFormRedirect}}",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "file",
 									"type": "file",
-									"src": []
+									"src": "/D:/dev/Dynamo_DesignAutomation/da_files/DynamoRevitDA.zip"
 								}
 							]
 						},
-						"url": "{{deleteWallsAppUrl}}",
+						"url": {
+							"raw": "{{deleteWallsAppUrl}}",
+							"host": [
+								"{{deleteWallsAppUrl}}"
+							]
+						},
 						"description": "This request to the Design Automation API uploads an AppBundle to APS.\n\n&nbsp;\n\nBefore you send this request: \n\n  1. Download the file *DeletWallsApp.zip* from the [*tutorial_data* folder of this repository](https://github.com/autodesk-platform-services/aps-tutorial-postman/tree/master/DA4Revit/tutorial_data)\n  2. Go to the **Body** tab below.\n  3. Scroll down so that the **File** row is visible.\n  4. Close any boxes that appear against **File**.\n  4. Click **Select** and pick the file *DeletWallsApp.zip*, which you downloaded in step 1."
 					},
 					"response": []
@@ -299,7 +331,15 @@
 							"mode": "raw",
 							"raw": "{\r\n\t\"id\": \"DeleteWallsAppTibi\",\r\n\t\"engine\": \"Autodesk.Revit+2026\",\r\n\t\"description\": \"Delete Walls app based on Revit 2026\"\r\n}"
 						},
-						"url": "{{dasApiRoot}}/appbundles",
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/appbundles-POST/)"
 					},
 					"response": []
@@ -327,7 +367,17 @@
 							"mode": "raw",
 							"raw": "{\r\n  \"version\": 1,\r\n  \"id\": \"test\"\r\n}"
 						},
-						"url": "{{dasApiRoot}}/appbundles/DeleteWallsApp/aliases",
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/DeleteWallsApp/aliases",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"DeleteWallsApp",
+								"aliases"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/appbundles-id-aliases-POST/)"
 					},
 					"response": []
@@ -370,7 +420,17 @@
 							"mode": "raw",
 							"raw": "{\r\n\t\"engine\": \"Autodesk.Revit+2024\",\r\n\t\"description\": \"Delete Walls app based on Revit 2024\"\r\n}"
 						},
-						"url": "{{dasApiRoot}}/appbundles/DeleteWallsApp/versions",
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/DeleteWallsApp/versions",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"DeleteWallsApp",
+								"versions"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/appbundles-id-versions-POST/)"
 					},
 					"response": []
@@ -470,7 +530,12 @@
 								}
 							]
 						},
-						"url": "{{deleteWallsAppUrl}}",
+						"url": {
+							"raw": "{{deleteWallsAppUrl}}",
+							"host": [
+								"{{deleteWallsAppUrl}}"
+							]
+						},
 						"description": "This request to the Design Automation API uploads an AppBundle as version 2 of the AppBundle.\n\n&nbsp;\n\nBefore you send this request: \n\n  1. Download the file *DeletWallsApp.zip* from the [*tutorial_data* folder of this repository](https://github.com/autodesk-platform-services/aps-tutorial-postman/tree/master/DA4Revit/tutorial_data)\n  2. Go to the **Body** tab below.\n  3. Scroll down so that the **File** row is visible.\n  4. Close any boxes that appear against **File**.\n  4. Click **Select** and pick the file *DeletWallsApp.zip*, which you downloaded in step 1."
 					},
 					"response": []
@@ -498,7 +563,18 @@
 							"mode": "raw",
 							"raw": "{\r\n  \"version\": 2\r\n}"
 						},
-						"url": "{{dasApiRoot}}/appbundles/DeleteWallsApp/aliases/test",
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/DeleteWallsApp/aliases/test",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"DeleteWallsApp",
+								"aliases",
+								"test"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/appbundles-id-aliases-aliasId-PATCH/)"
 					},
 					"response": []
@@ -564,7 +640,16 @@
 								"value": "Bearer {{dasApiToken}}"
 							}
 						],
-						"url": "{{dasApiRoot}}/activities/{{activityId}}",
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/{{activityId}}",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"{{activityId}}"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/activities-POST/)"
 					},
 					"response": []
@@ -675,7 +760,15 @@
 								}
 							}
 						},
-						"url": "{{dasApiRoot}}/activities",
+						"url": {
+							"raw": "{{dasApiRoot}}/activities",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/activities-POST/)"
 					},
 					"response": []
@@ -698,7 +791,17 @@
 							"mode": "raw",
 							"raw": "{\r\n    \"id\": \"test\",\r\n    \"version\": 1\r\n}"
 						},
-						"url": "{{dasApiRoot}}/activities/{{activityId}}/aliases",
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/{{activityId}}/aliases",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"{{activityId}}",
+								"aliases"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/appbundles-id-aliases-POST/)"
 					},
 					"response": []
@@ -772,7 +875,25 @@
 										"type": "text"
 									}
 								],
-								"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/pythonDependencies.zip/signeds3upload"
+								"url": {
+									"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/pythonDependencies.zip/signeds3upload",
+									"protocol": "https",
+									"host": [
+										"developer",
+										"api",
+										"autodesk",
+										"com"
+									],
+									"path": [
+										"oss",
+										"v2",
+										"buckets",
+										"{{ossBucketKey}}",
+										"objects",
+										"pythonDependencies.zip",
+										"signeds3upload"
+									]
+								}
 							},
 							"response": []
 						},
@@ -798,21 +919,19 @@
 									"type": "noauth"
 								},
 								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer {{dasApiToken}}",
-										"type": "text",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "file",
 									"file": {
 										"src": "/D:/dev/Dynamo_DesignAutomation/da_files/pythonDependencies.zip"
 									}
 								},
-								"url": "{{ContentUploadSignedURL}}"
+								"url": {
+									"raw": "{{ContentUploadSignedURL}}",
+									"host": [
+										"{{ContentUploadSignedURL}}"
+									]
+								}
 							},
 							"response": []
 						},
@@ -865,7 +984,25 @@
 									"mode": "raw",
 									"raw": "{\n    \"uploadKey\":\"{{UploadKey}}\"\n}"
 								},
-								"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/pythonDependencies.zip/signeds3upload"
+								"url": {
+									"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/pythonDependencies.zip/signeds3upload",
+									"protocol": "https",
+									"host": [
+										"developer",
+										"api",
+										"autodesk",
+										"com"
+									],
+									"path": [
+										"oss",
+										"v2",
+										"buckets",
+										"{{ossBucketKey}}",
+										"objects",
+										"pythonDependencies.zip",
+										"signeds3upload"
+									]
+								}
 							},
 							"response": []
 						}
@@ -901,8 +1038,7 @@
 								}
 							],
 							"protocolProfileBehavior": {
-								"disabledSystemHeaders": {},
-								"disableBodyPruning": true
+								"disabledSystemHeaders": {}
 							},
 							"request": {
 								"auth": {
@@ -916,13 +1052,25 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "file",
-									"file": {
-										"src": "/D:/dev/Dynamo_DesignAutomation/da_files/pythonDependencies.zip"
-									}
-								},
-								"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/run.rvt/signeds3upload"
+								"url": {
+									"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/run.rvt/signeds3upload",
+									"protocol": "https",
+									"host": [
+										"developer",
+										"api",
+										"autodesk",
+										"com"
+									],
+									"path": [
+										"oss",
+										"v2",
+										"buckets",
+										"{{ossBucketKey}}",
+										"objects",
+										"run.rvt",
+										"signeds3upload"
+									]
+								}
 							},
 							"response": []
 						},
@@ -955,7 +1103,12 @@
 										"src": "DeleteWalls.rvt"
 									}
 								},
-								"url": "{{ContentUploadSignedURL}}"
+								"url": {
+									"raw": "{{ContentUploadSignedURL}}",
+									"host": [
+										"{{ContentUploadSignedURL}}"
+									]
+								}
 							},
 							"response": []
 						},
@@ -998,7 +1151,25 @@
 									"mode": "raw",
 									"raw": "{\n    \"uploadKey\":\"{{UploadKey}}\"\n}"
 								},
-								"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/run.rvt/signeds3upload"
+								"url": {
+									"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/run.rvt/signeds3upload",
+									"protocol": "https",
+									"host": [
+										"developer",
+										"api",
+										"autodesk",
+										"com"
+									],
+									"path": [
+										"oss",
+										"v2",
+										"buckets",
+										"{{ossBucketKey}}",
+										"objects",
+										"run.rvt",
+										"signeds3upload"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1048,7 +1219,25 @@
 										"type": "text"
 									}
 								],
-								"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/run.json/signeds3upload"
+								"url": {
+									"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/run.json/signeds3upload",
+									"protocol": "https",
+									"host": [
+										"developer",
+										"api",
+										"autodesk",
+										"com"
+									],
+									"path": [
+										"oss",
+										"v2",
+										"buckets",
+										"{{ossBucketKey}}",
+										"objects",
+										"run.json",
+										"signeds3upload"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1081,7 +1270,12 @@
 										"src": "run.json"
 									}
 								},
-								"url": "{{ContentUploadSignedURL}}"
+								"url": {
+									"raw": "{{ContentUploadSignedURL}}",
+									"host": [
+										"{{ContentUploadSignedURL}}"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1124,7 +1318,25 @@
 									"mode": "raw",
 									"raw": "{\n    \"uploadKey\":\"{{UploadKey}}\"\n}"
 								},
-								"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/run.json/signeds3upload"
+								"url": {
+									"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/run.json/signeds3upload",
+									"protocol": "https",
+									"host": [
+										"developer",
+										"api",
+										"autodesk",
+										"com"
+									],
+									"path": [
+										"oss",
+										"v2",
+										"buckets",
+										"{{ossBucketKey}}",
+										"objects",
+										"run.json",
+										"signeds3upload"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1160,8 +1372,7 @@
 								}
 							],
 							"protocolProfileBehavior": {
-								"disabledSystemHeaders": {},
-								"disableBodyPruning": true
+								"disabledSystemHeaders": {}
 							},
 							"request": {
 								"auth": {
@@ -1175,13 +1386,25 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "file",
-									"file": {
-										"src": "/D:/dev/Dynamo_DesignAutomation/da_files/pythonDependencies.zip"
-									}
-								},
-								"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/packages.zip/signeds3upload"
+								"url": {
+									"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/packages.zip/signeds3upload",
+									"protocol": "https",
+									"host": [
+										"developer",
+										"api",
+										"autodesk",
+										"com"
+									],
+									"path": [
+										"oss",
+										"v2",
+										"buckets",
+										"{{ossBucketKey}}",
+										"objects",
+										"packages.zip",
+										"signeds3upload"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1207,20 +1430,19 @@
 									"type": "noauth"
 								},
 								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Bearer {{dasApiToken}}",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "file",
 									"file": {
-										"src": "/D:/dev/Dynamo_DesignAutomation/da_files/pythonDependencies.zip"
+										"src": "packages.zip"
 									}
 								},
-								"url": "{{ContentUploadSignedURL}}"
+								"url": {
+									"raw": "{{ContentUploadSignedURL}}",
+									"host": [
+										"{{ContentUploadSignedURL}}"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1263,7 +1485,25 @@
 									"mode": "raw",
 									"raw": "{\n    \"uploadKey\":\"{{UploadKey}}\"\n}"
 								},
-								"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/packages.zip/signeds3upload"
+								"url": {
+									"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/packages.zip/signeds3upload",
+									"protocol": "https",
+									"host": [
+										"developer",
+										"api",
+										"autodesk",
+										"com"
+									],
+									"path": [
+										"oss",
+										"v2",
+										"buckets",
+										"{{ossBucketKey}}",
+										"objects",
+										"packages.zip",
+										"signeds3upload"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1305,7 +1545,21 @@
 							"mode": "raw",
 							"raw": "{\n\t\"bucketKey\": \"{{ossBucketKey}}\",\n\t\"access\": \"full\",\n\t\"policyKey\": \"transient\"\n}\n"
 						},
-						"url": "https://developer.api.autodesk.com/oss/v2/buckets",
+						"url": {
+							"raw": "https://developer.api.autodesk.com/oss/v2/buckets",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"oss",
+								"v2",
+								"buckets"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/data/v2/reference/http/buckets-POST/)"
 					},
 					"response": []
@@ -1367,7 +1621,15 @@
 							"mode": "raw",
 							"raw": "{\r\n    \"activityId\": \"{{dasNickName}}.{{activityId}}+test\",\r\n    \"arguments\": {\r\n        \"rvtFile\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/run.rvt\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"runRequest\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/run.json\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"pythonLibs\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/pythonDependencies.zip\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"dynResult\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/result.json\",\r\n            \"verb\": \"put\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"packages\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/packages.zip\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"rvtResult\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/result.rvt\",\r\n            \"verb\": \"put\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        }\r\n    }\r\n}"
 						},
-						"url": "{{dasApiRoot}}/workitems",
+						"url": {
+							"raw": "{{dasApiRoot}}/workitems",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"workitems"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/workitems-POST/)"
 					},
 					"response": []
@@ -1386,7 +1648,16 @@
 								"value": "Bearer {{dasApiToken}}"
 							}
 						],
-						"url": "{{dasApiRoot}}/workitems/{{WorkitemId}}",
+						"url": {
+							"raw": "{{dasApiRoot}}/workitems/{{WorkitemId}}",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"workitems",
+								"{{WorkitemId}}"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/workitems-id-GET/)"
 					},
 					"response": []
@@ -1443,7 +1714,25 @@
 								"value": "Bearer {{dasApiToken}}"
 							}
 						],
-						"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/{{ossOutputFileObjectKey}}/signeds3download",
+						"url": {
+							"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/{{ossOutputFileObjectKey}}/signeds3download",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"oss",
+								"v2",
+								"buckets",
+								"{{ossBucketKey}}",
+								"objects",
+								"{{ossOutputFileObjectKey}}",
+								"signeds3download"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/data/v2/reference/http/buckets-:bucketKey-objects-:objectName-signed-POST/)"
 					},
 					"response": []
@@ -1453,7 +1742,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{ossOutputIptFileDownloadUrl}}",
+						"url": {
+							"raw": "{{ossOutputIptFileDownloadUrl}}",
+							"host": [
+								"{{ossOutputIptFileDownloadUrl}}"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/data/v2/reference/http/buckets-:bucketKey-objects-:objectName-GET/)"
 					},
 					"response": []
@@ -1494,7 +1788,23 @@
 								"type": "text"
 							}
 						],
-						"url": "https://developer.api.autodesk.com/da/us-east/v3/forgeapps/me"
+						"url": {
+							"raw": "https://developer.api.autodesk.com/da/us-east/v3/forgeapps/me",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"da",
+								"us-east",
+								"v3",
+								"forgeapps",
+								"me"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1516,7 +1826,23 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "https://developer.api.autodesk.com/da/us-east/v3/forgeapps/me",
+						"url": {
+							"raw": "https://developer.api.autodesk.com/da/us-east/v3/forgeapps/me",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"da",
+								"us-east",
+								"v3",
+								"forgeapps",
+								"me"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/forgeapps-id-DELETE/)"
 					},
 					"response": []
@@ -1550,7 +1876,22 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}",
+						"url": {
+							"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"oss",
+								"v2",
+								"buckets",
+								"{{ossBucketKey}}"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/data/v2/reference/http/buckets-:bucketKey-DELETE/)"
 					},
 					"response": []
@@ -1583,7 +1924,22 @@
 								}
 							}
 						},
-						"url": "https://developer.api.autodesk.com/da/us-east/v3/engines",
+						"url": {
+							"raw": "https://developer.api.autodesk.com/da/us-east/v3/engines",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"da",
+								"us-east",
+								"v3",
+								"engines"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/engines-GET/)"
 					},
 					"response": []
@@ -1599,7 +1955,22 @@
 								"type": "text"
 							}
 						],
-						"url": "https://developer.api.autodesk.com/da/us-east/v3/activities",
+						"url": {
+							"raw": "https://developer.api.autodesk.com/da/us-east/v3/activities",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"da",
+								"us-east",
+								"v3",
+								"activities"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/activities-GET/)"
 					},
 					"response": []
@@ -1615,7 +1986,23 @@
 								"type": "text"
 							}
 						],
-						"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects",
+						"url": {
+							"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"oss",
+								"v2",
+								"buckets",
+								"{{ossBucketKey}}",
+								"objects"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/data/v2/reference/http/buckets-:bucketKey-objects-GET/)"
 					},
 					"response": []
@@ -1631,7 +2018,21 @@
 								"type": "text"
 							}
 						],
-						"url": "https://developer.api.autodesk.com/oss/v2/buckets",
+						"url": {
+							"raw": "https://developer.api.autodesk.com/oss/v2/buckets",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"oss",
+								"v2",
+								"buckets"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/data/v2/reference/http/buckets-GET/)"
 					},
 					"response": []
@@ -1647,7 +2048,23 @@
 								"type": "text"
 							}
 						],
-						"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/details",
+						"url": {
+							"raw": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/details",
+							"protocol": "https",
+							"host": [
+								"developer",
+								"api",
+								"autodesk",
+								"com"
+							],
+							"path": [
+								"oss",
+								"v2",
+								"buckets",
+								"{{ossBucketKey}}",
+								"details"
+							]
+						},
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/data/v2/reference/http/buckets-:bucketKey-details-GET/)"
 					},
 					"response": []
