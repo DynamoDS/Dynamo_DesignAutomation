@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c248d271-b3b4-4805-8897-3b9a798f42ed",
+		"_postman_id": "2e38cb78-2153-4fea-a854-2a423d2ce37d",
 		"name": "Execute a Revit Add-in",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "2815585"
@@ -1327,6 +1327,49 @@
 						"method": "GET",
 						"header": [],
 						"url": "{{ossOutputIptFileDownloadUrl}}",
+						"description": "[See documentation](https://aps.autodesk.com/en/docs/data/v2/reference/http/buckets-:bucketKey-objects-:objectName-GET/)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get S3 Download URL for result.json",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"ossResultJsonDownloadUrl\", body[\"url\"]);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{dasApiToken}}"
+							}
+						],
+						"url": "https://developer.api.autodesk.com/oss/v2/buckets/{{ossBucketKey}}/objects/result.json/signeds3download",
+						"description": "[See documentation](https://aps.autodesk.com/en/docs/data/v2/reference/http/buckets-:bucketKey-objects-:objectName-signed-POST/)"
+					},
+					"response": []
+				},
+				{
+					"name": "Download Result.json",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{ossResultJsonDownloadUrl}}",
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/data/v2/reference/http/buckets-:bucketKey-objects-:objectName-GET/)"
 					},
 					"response": []

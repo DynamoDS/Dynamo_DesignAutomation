@@ -17,29 +17,44 @@ This repo contains supporting files, scripts and documentation that can help str
 - Go to [APS Developer portal](https://aps.autodesk.com/).
 - Create an app.
 - Grab the Client ID and Client Secret.
+- Clone this repo to your local system.
+- To use postman, download and install it from [here](https://www.postman.com/downloads/).
+- There are 2 files you need to import in the postman app, a [collection](./postman/Execute%20a%20Dynamo%20Revit%20Add-in.postman_collection) and an [environment file](./postman/DA4Revit.postman_environment.json).
+- Set the current environment to the loaded DA4Revit ![alt text](./postman/environment.png)
+- Set the work directory in postman to the location where you cloned this repo locally ([example](![alt text](./postman/work-directory.png)))
 
 ## Tasks
 
 For general instructions see the [Walkthrough](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/).
 
+Below there are instructions on how to use postman to run design automation work items.
+Switch to the `Execute a Dynamo Revit Add-in` collection and go through the Tasks one by one.
+Some of the tasks also contain `Delete` commands which can be helpful if you want a clean slate.
+
 - Task 1 - [Convert Revit Add-in](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step1-convert-addin/).
-  - The addin is already created and you can download it from [DynamoRevitDA.zip](./da_files/DynamoRevitDA.zip).
-  - If you need to use python nodes please also download [pythonDependencies.zip](./da_files/pythonDependencies.zip).
+  - The addin is already created and you find it at [DynamoRevitDA.zip](./da_files/DynamoRevitDA.zip).
+  - If you need to use python nodes please also see [pythonDependencies.zip](./da_files/pythonDependencies.zip).
+  - If you need to run dynamo packages, you can zip up the packages in a single zipped with the name `packages.zip`. See this example [packages.zip](./da_files/packages.zip).
 - Task 2 – [Obtain an Access Token](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step2-create-forge-app/).
+  - Run the `Get an Access Token` request in the `Task 2 - Obtain an Access Token` section of the postman collection.
 - Task 3 – [Create a Nickname](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step3-create-nickname/).
+  - Run the `Create Nickname` request in the `Task 3 - Create a Nickname` section of the postman collection.
 - Task 4 – [Upload the AppBundle](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step4-publish-appbundle/).
-  - Register the AppBundle `register_appbundle.sh`
-  - Upload the AppBundle. Use [DynamoRevitDA.zip](./da_files/DynamoRevitDA.zip).
-  - Create an alias for the AppBundle.
-  - Create a new version of the AppBundle.
-  - Point the alias to the new version of the AppBundle.
+  - Register the AppBundle by running `Register the AppBundle` request.
+  - Upload the AppBundle by running the `Upload the AppBundle` request.
+  - Create an alias for the AppBundle by running the `Create an Alias for the AppBundle` request.
 - Task 5 – [Publish an Activity](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step5-publish-activity/).
-  - parameters - the DynamoAddin requires the following parameters (but not limited to):
-    - An `.rvt` file (get parameter) on which to operate (will be automatically opened as the current revit model). You can use [DeleteWalls.rvt](./DeleteWalls.rvt) as an example.
-    - A `run.json` file (get parameter). This must respect the Player specifications for a GraphRunRequest. You can use [run.json](./da_files/run.json) as an example.
-    - A `pythonDependencies.zip` (get parameter). This zip can be downloaded from [pythonDependencies.zip](./da_files/pythonDependencies.zip). It contains the Python.Included.dll and Python.ScyPy.dll normally included with Dynamo out of the box. These must be uploaded separately from Dynamo because they are too large to bundle up with the DynamoAddin (DesignAutomation has a size limit on the AppBundles you can upload set at 100 MB).
-    - A `result.json` (put parameter) can be included. This file will contain the graph run output (as produced by Dynamo Player).
-    - A `result.rvt` (put parameter) can be included in order to download it. This file will contain the provided revit model after the dynamo run.
+  - Create a new Activity by running the `Create a New Activity` request. 
+  - Create an alias for the Activity by running the `Create an Alias to the Activity` request.
+  
+  Notes: 
+    The activity must use specific parameters to be compatible with the dynamo AppBundle. 
+    - parameters - the DynamoAddin requires the following parameters (but not limited to):
+      - An `.rvt` file (get parameter) on which to operate (will be automatically opened as the current revit model). You can use [DeleteWalls.rvt](./DeleteWalls.rvt) as an example.
+      - A `run.json` file (get parameter). This must respect the Player specifications for a GraphRunRequest. You can use [run.json](./da_files/run.json) as an example.
+      - A `pythonDependencies.zip` (get parameter). This zip can be downloaded from [pythonDependencies.zip](./da_files/pythonDependencies.zip). It contains the Python.Included.dll and Python.ScyPy.dll normally included with Dynamo out of the box. These must be uploaded separately from Dynamo because they are too large to bundle up with the DynamoAddin (DesignAutomation has a size limit on the AppBundles you can upload set at 100 MB).
+      - A `result.json` (put parameter) can be included. This file will contain the graph run output (as produced by Dynamo Player).
+      - A `result.rvt` (put parameter) can be included in order to download it. This file will contain the provided revit model after the dynamo run.
 
     Here is an example of an activity:
 
@@ -99,13 +114,17 @@ For general instructions see the [Walkthrough](https://aps.autodesk.com/en/docs/
     ```
 
 - Task 6 – [Prepare Cloud Storage](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step6-prepare-cloud-storage/).
-  - The get parameters described at the previous step must be uploaded as individual files:
-    - The `.rvt` file
-    - The `run.json` file
-    - The `run.dyn` file
-    - The `pythonpythonDependencies.zip`
+  - If not already created, run the `Create a Bucket` request to create a bucket for all storage items.
+  - The get parameters described at the previous step must be uploaded as individual files. Run all the requests in the `Task 6 - Prepare cloud storage` folder.
+    - The `.rvt` file - run the tasks inside the `RvtFile` subfolder.
+    - The `run.json` file - run the tasks inside the `RvtFile` subfolder.
+    - The `run.dyn` file - run the tasks inside the `RvtFile` subfolder.
+    - The `pythonpythonDependencies.zip` - run the tasks inside the `RvtFile` subfolder.
+    - The `packages.zip` - run the tasks inside the `packages.zip` subfolder.
 
 - Task 7 - [Submit a WorkItem](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step7-post-workitem/).
+  - Submit a workitem by running the `Create a  WorkItem` request.
+  - Check the work status by running the `Check Status of a  WorkItem` request.
 
   Here is an example of an activity:
 
@@ -155,20 +174,18 @@ For general instructions see the [Walkthrough](https://aps.autodesk.com/en/docs/
           }'
   ```
 
-  - Get workitem status `get_workitem_status.sh`
-  - Download report. Report will look like [this](./examples/report.txt) `download_report.sh`
-
-- Task 8 - [Download the Results](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step8-download-results/) `create_signed_download_url.sh` `download_result.sh`
-  Result will look like [this](./examples/result.json)
+- Task 8 - [Download the Results](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step8-download-results/) 
+  - Run the `Get S3 Download URL for Resulting RVT file` and `Download Resulting RVT File` tasks to download the revit file.
+  - Run the `Get S3 Download URL for result.json` and `Download Result.json` to download the dynamo output. The result will look like [this](./examples/result.json)
 
 ## Scripts
 
-You can perform above tasks using the scripts in this repository.
+You can perform above tasks using the bash scripts in this repository.
 
 > [!IMPORTANT]
 > Copy [`.env.example`](.env.example) and save it as `.env` and fill in the `CLIENT_ID` and `CLIENT_SECRET` and update other fields as needed.
 
-## How to run bash scripts
+### How to run bash scripts
 
 > [!IMPORTANT]
 >
@@ -218,7 +235,8 @@ You use these [bash scripts](/scripts/) to perform all of the tasks listed above
 
   Result will look like [this](./examples/result.json)
 
-### How to run design_automation.js
+
+### Run DA with javascript: design_automation.js
 
 > [!IMPORTANT]
 > Install [nodejs](https://nodejs.org/en/download).
@@ -236,10 +254,6 @@ You can also use this [js script](./design_automation.js) for all the update tas
   - `run` - Uploads the run.json request
   - `work` - Creates and submits a WorkItem request
   - `result` - Polls for results (ands saves the results locally log.txt, result.json and result.rvt)
-
-### Postman collection
-
-You can also use postman collection from [here](https://github.com/autodesk-platform-services/aps-tutorial-postman/tree/master/DA4Revit/collections).
 
 ## Useful tools
 
