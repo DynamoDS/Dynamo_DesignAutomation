@@ -21,7 +21,7 @@ This repo contains supporting files, scripts and documentation that can help str
 - To use postman, download and install it from [here](https://www.postman.com/downloads/).
 - There are 2 files you need to import in the postman app, a [collection](./postman/Execute%20a%20Dynamo%20Revit%20Add-in.postman_collection) and an [environment file](./postman/DA4Revit.postman_environment.json).
 - Set the current environment to the loaded DA4Revit ![alt text](./postman/environment.png)
-- Set the work directory in postman to the location where you cloned this repo locally ([example](![alt text](./postman/work-directory.png)))
+- Set the work directory in postman to the location where you cloned this repo locally - [example](./postman/work-directory.png)
 
 ## Tasks
 
@@ -30,6 +30,7 @@ For general instructions see the [Walkthrough](https://aps.autodesk.com/en/docs/
 Below there are instructions on how to use postman to run design automation work items.
 Switch to the `Execute a Dynamo Revit Add-in` collection and go through the Tasks one by one.
 Some of the tasks also contain `Delete` commands which can be helpful if you want a clean slate.
+![alt text](./postman/image.png)
 
 - Task 1 - [Convert Revit Add-in](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step1-convert-addin/).
   - The addin is already created and you find it at [DynamoRevitDA.zip](./da_files/DynamoRevitDA.zip).
