@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "2e38cb78-2153-4fea-a854-2a423d2ce37d",
-		"name": "Execute a Revit Add-in",
+		"_postman_id": "693d3c19-0b8a-4bdb-a86e-ee7362a457d6",
+		"name": "DesignAutomation for DynamoRevit",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "2815585"
+		"_exporter_id": "37432929",
+		"_collection_link": "https://dynamobim.postman.co/workspace/DAAS~3187159f-5cc6-4d3c-8a54-ba33e9cdeabc/collection/37432929-693d3c19-0b8a-4bdb-a86e-ee7362a457d6?action=share&source=collection_link&creator=37432929"
 	},
 	"item": [
 		{

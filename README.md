@@ -19,8 +19,8 @@ This repo contains supporting files, scripts and documentation that can help str
 - Grab the Client ID and Client Secret.
 - Clone this repo to your local system.
 - To use postman, download and install it from [here](https://www.postman.com/downloads/).
-- There are 2 files you need to import in the postman app, a [collection](./postman/Execute%20a%20Dynamo%20Revit%20Add-in.postman_collection) and an [environment file](./postman/DA4Revit.postman_environment.json).
-- Set the current environment to the loaded DA4Revit ![alt text](./images/environment.png)
+- There are 2 files you need to import in the postman app, a [collection](./postman/DesignAutomation%20for%20DynamoRevit.postman_collection.json) and an [environment file](./postman/DA4DynamoRevit.postman_environment.json).
+- Set the current environment to the loaded DA4DynamoRevit ![alt text](./images/environment.png)
 - Set the work directory in postman to the location where you cloned this repo locally ![alt text](./images/work-directory.png)
 
 ## Tasks
@@ -45,17 +45,17 @@ Some of the tasks also contain `Delete` commands which can be helpful if you wan
   - Upload the AppBundle by running the `Upload the AppBundle` request.
   - Create an alias for the AppBundle by running the `Create an Alias for the AppBundle` request.
 - Task 5 – [Publish an Activity](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step5-publish-activity/).
-  - Create a new Activity by running the `Create a New Activity` request. 
+  - Create a new Activity by running the `Create a New Activity` request.
   - Create an alias for the Activity by running the `Create an Alias to the Activity` request.
-  
-  Notes: 
-    The activity must use specific parameters to be compatible with the dynamo AppBundle. 
-    - parameters - the DynamoAddin requires the following parameters (but not limited to):
-      - An `.rvt` file (get parameter) on which to operate (will be automatically opened as the current revit model). You can use [DeleteWalls.rvt](./DeleteWalls.rvt) as an example.
-      - A `run.json` file (get parameter). This must respect the Player specifications for a GraphRunRequest. You can use [run.json](./da_files/run.json) as an example.
-      - A `pythonDependencies.zip` (get parameter). This zip can be downloaded from [pythonDependencies.zip](./da_files/pythonDependencies.zip). It contains the Python.Included.dll and Python.ScyPy.dll normally included with Dynamo out of the box. These must be uploaded separately from Dynamo because they are too large to bundle up with the DynamoAddin (DesignAutomation has a size limit on the AppBundles you can upload set at 100 MB).
-      - A `result.json` (put parameter) can be included. This file will contain the graph run output (as produced by Dynamo Player).
-      - A `result.rvt` (put parameter) can be included in order to download it. This file will contain the provided revit model after the dynamo run.
+  Notes:
+
+  The activity must use specific parameters to be compatible with the dynamo AppBundle.
+  - parameters - the DynamoAddin requires the following parameters (but not limited to):
+    - An `.rvt` file (get parameter) on which to operate (will be automatically opened as the current revit model). You can use [DeleteWalls.rvt](./DeleteWalls.rvt) as an example.
+    - A `run.json` file (get parameter). This must respect the Player specifications for a GraphRunRequest. You can use [run.json](./da_files/run.json) as an example.
+    - A `pythonDependencies.zip` (get parameter). This zip can be downloaded from [pythonDependencies.zip](./da_files/pythonDependencies.zip). It contains the Python.Included.dll and Python.ScyPy.dll normally included with Dynamo out of the box. These must be uploaded separately from Dynamo because they are too large to bundle up with the DynamoAddin (DesignAutomation has a size limit on the AppBundles you can upload set at 100 MB).
+    - A `result.json` (put parameter) can be included. This file will contain the graph run output (as produced by Dynamo Player).
+    - A `result.rvt` (put parameter) can be included in order to download it. This file will contain the provided revit model after the dynamo run.
 
     Here is an example of an activity:
 
@@ -122,7 +122,6 @@ Some of the tasks also contain `Delete` commands which can be helpful if you wan
     - The `run.dyn` file - run the tasks inside the `RvtFile` subfolder.
     - The `pythonpythonDependencies.zip` - run the tasks inside the `RvtFile` subfolder.
     - The `packages.zip` - run the tasks inside the `packages.zip` subfolder.
-
 - Task 7 - [Submit a WorkItem](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step7-post-workitem/).
   - Submit a workitem by running the `Create a  WorkItem` request.
   - Check the work status by running the `Check Status of a  WorkItem` request.
@@ -175,13 +174,13 @@ Some of the tasks also contain `Delete` commands which can be helpful if you wan
           }'
   ```
 
-- Task 8 - [Download the Results](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step8-download-results/) 
+- Task 8 - [Download the Results](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step8-download-results/)
   - Run the `Get S3 Download URL for Resulting RVT file` and `Download Resulting RVT File` tasks to download the revit file.
   - Run the `Get S3 Download URL for result.json` and `Download Result.json` to download the dynamo output. The result will look like [this](./examples/result.json)
 
-## Scripts
+## Useful scripts
 
-You can perform above tasks using the bash scripts in this repository.
+You can perform above tasks using scripts in this repository.
 
 > [!IMPORTANT]
 > Copy [`.env.example`](.env.example) and save it as `.env` and fill in the `CLIENT_ID` and `CLIENT_SECRET` and update other fields as needed.
@@ -193,7 +192,7 @@ You can perform above tasks using the bash scripts in this repository.
 > - Install [jq](https://jqlang.org/).
 > - Prepare environment variables.
 >   - You can use [direnv](https://direnv.net/) to load values from `.env` as environment variables.
->   - Alternatively, you can copy use  an `.envrc` file. [`.envrc.example`](.envrc.example) and save it as `.envrc` and source it `source .envrc` to load the environment variables. 
+>   - Alternatively, you can copy use  an `.envrc` file. [`.envrc.example`](.envrc.example) and save it as `.envrc` and source it `source .envrc` to load the environment variables.
 
 You use these [bash scripts](/scripts/) to perform all of the tasks listed above. e.g `./scripts/get_appbundles.sh`.
 
@@ -235,7 +234,6 @@ You use these [bash scripts](/scripts/) to perform all of the tasks listed above
   - Download result - `./scripts/download_result.sh <download_json> <file>`
 
   Result will look like [this](./examples/result.json)
-
 
 ### Run DA with javascript: design_automation.js
 
