@@ -21,7 +21,7 @@ This repo contains supporting files, scripts and documentation that can help str
 - To use postman, download and install it from [here](https://www.postman.com/downloads/).
 - There are 2 files you need to import in the postman app, a [collection](./postman/Execute%20a%20Dynamo%20Revit%20Add-in.postman_collection) and an [environment file](./postman/DA4Revit.postman_environment.json).
 - Set the current environment to the loaded DA4Revit ![alt text](./postman/environment.png)
-- Set the work directory in postman to the location where you cloned this repo locally - [example](./postman/work-directory.png)
+- Set the work directory in postman to the location where you cloned this repo locally ![alt text](./postman/work-directory.png)
 
 ## Tasks
 
