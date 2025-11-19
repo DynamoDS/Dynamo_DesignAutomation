@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "693d3c19-0b8a-4bdb-a86e-ee7362a457d6",
+		"_postman_id": "cfff410e-4f52-4b87-820f-22df5e7c0cc3",
 		"name": "DesignAutomation for DynamoRevit",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "37432929",
-		"_collection_link": "https://dynamobim.postman.co/workspace/DAAS~3187159f-5cc6-4d3c-8a54-ba33e9cdeabc/collection/37432929-693d3c19-0b8a-4bdb-a86e-ee7362a457d6?action=share&source=collection_link&creator=37432929"
+		"_exporter_id": "2815585"
 	},
 	"item": [
 		{
@@ -543,6 +542,110 @@
 									"                \"description\": \"Results\",\r",
 									"                \"required\": false,\r",
 									"                \"localName\": \"result.rvt\"\r",
+									"              }\r",
+									"            },\r",
+									"            \"engine\": \"Autodesk.Revit+2026\",\r",
+									"            \"appbundles\": [ `${pm.environment.get('dasNickName')}.${pm.environment.get(\"appBundleName\")}+test` ],\r",
+									"            \"description\": \"Deletes walls from Revit file.\"\r",
+									"          }));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{dasApiToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{activity}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{dasApiRoot}}/activities",
+						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/activities-POST/)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Revit Cloud Model Activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"activityVersion\", body[\"version\"]);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var activitId = pm.environment.get(\"activityId\");\r",
+									"console.log(activitId);\r",
+									"console.log(`${pm.environment.get('dasNickName')}`);\r",
+									"\r",
+									"pm.environment.set(\"activity\", JSON.stringify({\r",
+									"            \"id\": activitId,\r",
+									"            \"commandLine\": [ `$(engine.path)\\\\\\\\revitcoreconsole.exe /al \\\"$(appbundles[${pm.environment.get(\"appBundleName\")}].path)\\\"` ],\r",
+									"            \"parameters\": {\r",
+									"             \"runRequest\": {\r",
+									"                \"zip\": false,\r",
+									"                \"ondemand\": false,\r",
+									"                \"verb\": \"get\",\r",
+									"                \"description\": \"Input Revit model\",\r",
+									"                \"required\": false,\r",
+									"                \"localName\": \"run.json\"\r",
+									"              },\r",
+									"              \"setup\": {\r",
+									"                \"zip\": false,\r",
+									"                \"ondemand\": false,\r",
+									"                \"verb\": \"get\",\r",
+									"                \"description\": \"DA config file\",\r",
+									"                \"required\": false,\r",
+									"                \"localName\": \"setup.json\"\r",
+									"              },\r",
+									"              \"pythonLibs\": {\r",
+									"                \"zip\": true,\r",
+									"                \"ondemand\": false,\r",
+									"                \"verb\": \"get\",\r",
+									"                \"description\": \"Python libs\",\r",
+									"                \"required\": false,\r",
+									"                \"localName\": \"pythonDependencies\"\r",
+									"              },\r",
+									"              \"packages\": {\r",
+									"                \"zip\": true,\r",
+									"                \"ondemand\": false,\r",
+									"                \"verb\": \"get\",\r",
+									"                \"description\": \"Dynamo packages\",\r",
+									"                \"required\": false,\r",
+									"                \"localName\": \"packages\"\r",
+									"              },\r",
+									"              \"dynResult\": {\r",
+									"                \"zip\": false,\r",
+									"                \"ondemand\": false,\r",
+									"                \"verb\": \"put\",\r",
+									"                \"description\": \"Results\",\r",
+									"                \"required\": false,\r",
+									"                \"localName\": \"result.json\"\r",
 									"              }\r",
 									"            },\r",
 									"            \"engine\": \"Autodesk.Revit+2026\",\r",
@@ -1240,6 +1343,43 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"activityId\": \"{{dasNickName}}.{{activityId}}+test\",\r\n    \"arguments\": {\r\n        \"rvtFile\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/run.rvt\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"runRequest\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/run.json\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"pythonLibs\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/pythonDependencies.zip\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"dynResult\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/result.json\",\r\n            \"verb\": \"put\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"packages\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/packages.zip\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"rvtResult\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/result.rvt\",\r\n            \"verb\": \"put\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        }\r\n    }\r\n}"
+						},
+						"url": "{{dasApiRoot}}/workitems",
+						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/workitems-POST/)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Revit Cloud Model  WorkItem",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.environment.set(\"WorkitemId\", body[\"id\"]);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{dasApiToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"activityId\": \"{{dasNickName}}.{{activityId}}+test\",\r\n    \"arguments\": {\r\n        \"runRequest\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/run.json\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"setup\": {\r\n            \"url\": \"data:application/json, {'SaveRevitFile': true, 'CloudModel': {'Region': 'US', 'ProjectGuid': '3e0d80bb-a0fd-4930-84f8-72ff40ef12d2', 'ModelGuid': 'ff4e6d0b-5c64-41ce-9292-617e1c61296c'}}\"\r\n        },\r\n        \"adsk3LeggedToken\": \"Get_this_from_the_DAAS_web_client\",\r\n        \"pythonLibs\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/pythonDependencies.zip\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"dynResult\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/result.json\",\r\n            \"verb\": \"put\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        },\r\n        \"packages\": {\r\n            \"url\": \"urn:adsk.objects:os.object:{{ossBucketKey}}/packages.zip\",\r\n            \"verb\": \"get\",\r\n            \"headers\": {\r\n                \"Authorization\": \"Bearer {{dasApiToken}}\"\r\n            }\r\n        }\r\n    }\r\n}"
 						},
 						"url": "{{dasApiRoot}}/workitems",
 						"description": "[See documentation](https://aps.autodesk.com/en/docs/design-automation/v3/reference/http/workitems-POST/)"
